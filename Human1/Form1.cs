@@ -13,8 +13,6 @@ namespace Human1
     public partial class Form1 : Form
     {
 
-        private List<Teacher> teacher= new List<Teacher>();
-        private List<Student> student=new List<Student>();
         public Form1()
         {
             InitializeComponent();
@@ -24,25 +22,21 @@ namespace Human1
             Address address = new Address("Ukraine", "Donetskaya", "Donetsk", "Debal`cevo");
             Teacher pop = new Teacher("Vitaliy", "Gromyako", 35, 421, address);
             Teacher pop1 = new Teacher("Tolya", "Got", 40, 325, address);
- 
+
 
             Student pip1 = new Student("Grisha", "Zabugrovich", 19, 12, 4, address);
             Student pip2 = new Student("Misha", "Hohol", 21, 13, 3, address);
             Student pip3 = new Student("Kolya", "Vodniy", 17, 14, 5, address);
             Student pip4 = new Student("Maxim", "Chornozub", 18, 15, 2, address);
 
-            teacher.Add(pop);
-            teacher.Add(pop1);
+            staticlist.teachers.Add(pop);
+            staticlist.teachers.Add(pop1);
 
-            teacher[0].Add(pip1);
-            teacher[1].Add(pip1);
-            teacher[0].Add(pip3);       
-            teacher[1].Add(pip4);
+            staticlist.teachers[0].Add(pip1);
+            staticlist.teachers[1].Add(pip2);
+            staticlist.teachers[0].Add(pip3);
+            staticlist.teachers[1].Add(pip4);
 
-            student.Add(pip1);
-            student.Add(pip2);
-            student.Add(pip3);
-            student.Add(pip4);
 
         }
         private void CreateChart(List<Teacher> tch)
@@ -54,88 +48,163 @@ namespace Human1
             }
         }
 
-        private void CreateChart(List<Student> std)
-        {   
+        private void CreateChart()
+        {
+            List<Student> std1 = std();
 
             chart1.Series["Series1"].Points.Clear();
-            for (int i = 0; i < std.Count; i++)
+            for (int i = 0; i < std1.Count; i++)
             {
-                chart1.Series["Series1"].Points.AddXY(std[i].Name, std[i].Age);
+                chart1.Series["Series1"].Points.AddXY(std1[i].Name, std1[i].Age);
             }
         }
-        private void dtCreate(List<Student> std)
+        private void CreateDT()
         {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("Name");
-            dt.Columns.Add("Surname");
-            dt.Columns.Add("Age");
-            dt.Columns.Add("ID");
-            dt.Columns.Add("Mark");
-            dt.Columns.Add("Country");
-            dt.Columns.Add("Region");
-            dt.Columns.Add("City");
-            dt.Columns.Add("Street");
-           
+            List<Student> std1 = std();
 
-            foreach (Student i in std)
+            DataTable tab = new DataTable();
+            tab.Columns.Add("Name");
+            tab.Columns.Add("Surname");
+            tab.Columns.Add("Age");
+            tab.Columns.Add("ID");
+            tab.Columns.Add("Mark");
+            tab.Columns.Add("Country");
+            tab.Columns.Add("Region");
+            tab.Columns.Add("City");
+            tab.Columns.Add("Street");
+
+
+            foreach (Student i in std1)
             {
-                dt.Rows.Add(i.Name, i.Surname, i.Age, i.ID, i.Mark, i.Adress.Country, i.Adress.Region, i.Adress.City, i.Adress.Street);
+                tab.Rows.Add(i.Name, i.Surname, i.Age, i.ID, i.Mark, i.Adress.Country, i.Adress.Region, i.Adress.City, i.Adress.Street);
             }
-            dataGridView1.DataSource = dt;
+            dataGridView1.DataSource = tab;
         }
 
-        private void dtCreate(List<Teacher> tch)
+        private void CreateDT(List<Teacher> tch)
         {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("Name");
-            dt.Columns.Add("Surname");
-            dt.Columns.Add("Age");
-            dt.Columns.Add("ID");
-            dt.Columns.Add("Country"); 
-            dt.Columns.Add("Region");
-            dt.Columns.Add("City");
-            dt.Columns.Add("Street");
-           
+            DataTable tab = new DataTable();
+            tab.Columns.Add("Name");
+            tab.Columns.Add("Surname");
+            tab.Columns.Add("Age");
+            tab.Columns.Add("ID");
+            tab.Columns.Add("Country");
+            tab.Columns.Add("Region");
+            tab.Columns.Add("City");
+            tab.Columns.Add("Street");
+
 
             foreach (Teacher i in tch)
             {
-                dt.Rows.Add(i.Name, i.Surname, i.Age, i.ID, i.Adress.Country, i.Adress.Region, i.Adress.City, i.Adress.Street);
-                
+                tab.Rows.Add(i.Name, i.Surname, i.Age, i.ID, i.Adress.Country, i.Adress.Region, i.Adress.City, i.Adress.Street);
+
             }
-            dataGridView2.DataSource = dt;
+            dataGridView2.DataSource = tab;
         }
         private void CreaateComboBox()
         {
- 
-            for (int i=0;i<teacher.Count;i++)
-            {   
-                comboBox1.Items.Add(teacher[i].Name + " " + teacher[i].Surname);
+            comboBox1.Items.Clear();
+            for (int i = 0; i < staticlist.teachers.Count; i++)
+            {
+                comboBox1.Items.Add(staticlist.teachers[i].Name + " " + staticlist.teachers[i].Surname);
             }
         }
         private void CreateTree()
         {
+            treeView1.Nodes.Clear();
             TreeNode root = new TreeNode();
             root.Text = "Teacher";
             root.Name = "Teachers";
             treeView1.Nodes.Add(root);
-            for(int i=0;i< teacher.Count;i++)
+            for (int i = 0; i < staticlist.teachers.Count; i++)
             {
-                treeView1.Nodes[0].Nodes.Add(teacher[i].Name + " " + teacher[i].Surname);
-                for(int j=0;j<teacher[i].getList().Count();j++)
+                treeView1.Nodes[0].Nodes.Add(staticlist.teachers[i].Name + " " + staticlist.teachers[i].Surname);
+                for (int j = 0; j < staticlist.teachers[i].getList().Count(); j++)
                 {
-                    List<Student> list = teacher[i].getList();
+                    List<Student> list = staticlist.teachers[i].getList();
                     treeView1.Nodes[0].Nodes[i].Nodes.Add(list[j].Name + " " + list[j].Surname);
                 }
             }
         }
+
+        private List<Student> std()
+        {
+
+            List<Student> std = new List<Student>();
+            for (int i = 0; i < staticlist.teachers.Count; i++)
+            {
+                List<Student> list = staticlist.teachers[i].getList();
+                for (int j = 0; j < list.Count; j++)
+                {
+                    std.Add(list[j]);
+                }
+            }
+            return std;
+        }
+     
+
         private void Form1_Load(object sender, EventArgs e)
         {
             CreateTeacher();
-            CreateChart(teacher);
-            dtCreate(student);
-            dtCreate(teacher);
+            CreateChart(staticlist.teachers);
+            CreateDT(staticlist.teachers);
+            CreateChart();
+            CreateDT();
             CreaateComboBox();
+
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            CreateTeach newForm = new CreateTeach();
+            newForm.Show();
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            CreateStudent newForm = new CreateStudent();
+            newForm.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            CreateDT();
             CreateTree();
+            CreateDT(staticlist.teachers);
+            CreateChart();
+            CreaateComboBox();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+
+            for (int i = 0; i < staticlist.teachers.Count; i++)
+            {
+
+                if (comboBox1.SelectedItem.ToString() == staticlist.teachers[i].Name + " " + staticlist.teachers[i].Surname)
+                {
+                    List<Student> std1 = staticlist.teachers[i].getList();
+                    DataTable tab = new DataTable();
+                    tab.Columns.Add("Name");
+                    tab.Columns.Add("Surname");
+                    tab.Columns.Add("Age");
+                    tab.Columns.Add("ID");
+                    tab.Columns.Add("Mark");
+                    tab.Columns.Add("Country");
+                    tab.Columns.Add("Region");
+                    tab.Columns.Add("City");
+                    tab.Columns.Add("Street");
+
+
+                    foreach (Student a in std1)
+                    {
+                        tab.Rows.Add(a.Name, a.Surname, a.Age, a.ID, a.Mark, a.Adress.Country, a.Adress.Region, a.Adress.City, a.Adress.Street);
+                    }
+                    dataGridView3.DataSource = tab;
+                }
+
+            }
         }
     }
 }

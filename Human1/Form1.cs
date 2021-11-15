@@ -39,25 +39,9 @@ namespace Human1
 
 
         }
-        private void CreateChart(List<Teacher> tch)
-        {
-            chart1.Series["Series1"].Points.Clear();
-            for (int i = 0; i < tch.Count; i++)
-            {
-                chart1.Series["Series1"].Points.AddXY(tch[i].Name, tch[i].Age);
-            }
-        }
+      
 
-        private void CreateChart()
-        {
-            List<Student> std1 = std();
-
-            chart1.Series["Series1"].Points.Clear();
-            for (int i = 0; i < std1.Count; i++)
-            {
-                chart1.Series["Series1"].Points.AddXY(std1[i].Name, std1[i].Age);
-            }
-        }
+       
         private void CreateDT()
         {
             List<Student> std1 = std();
@@ -101,31 +85,7 @@ namespace Human1
             }
             dataGridView2.DataSource = tab;
         }
-        private void CreaateComboBox()
-        {
-            comboBox1.Items.Clear();
-            for (int i = 0; i < staticlist.teachers.Count; i++)
-            {
-                comboBox1.Items.Add(staticlist.teachers[i].Name + " " + staticlist.teachers[i].Surname);
-            }
-        }
-        private void CreateTree()
-        {
-            treeView1.Nodes.Clear();
-            TreeNode root = new TreeNode();
-            root.Text = "Teacher";
-            root.Name = "Teachers";
-            treeView1.Nodes.Add(root);
-            for (int i = 0; i < staticlist.teachers.Count; i++)
-            {
-                treeView1.Nodes[0].Nodes.Add(staticlist.teachers[i].Name + " " + staticlist.teachers[i].Surname);
-                for (int j = 0; j < staticlist.teachers[i].getList().Count(); j++)
-                {
-                    List<Student> list = staticlist.teachers[i].getList();
-                    treeView1.Nodes[0].Nodes[i].Nodes.Add(list[j].Name + " " + list[j].Surname);
-                }
-            }
-        }
+        
 
         private List<Student> std()
         {
@@ -141,55 +101,23 @@ namespace Human1
             }
             return std;
         }
-     
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
             CreateTeacher();
-            CreateChart(staticlist.teachers);
+           
             CreateDT(staticlist.teachers);
-            CreateChart();
+       
             CreateDT();
-            CreaateComboBox();
-            CreateTree();
+         
         }
 
-      
-
-        
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
 
-            for (int i = 0; i < staticlist.teachers.Count; i++)
-            {
-
-                if (comboBox1.SelectedItem.ToString() == staticlist.teachers[i].Name + " " + staticlist.teachers[i].Surname)
-                {
-                    List<Student> std1 = staticlist.teachers[i].getList();
-                    DataTable tab = new DataTable();
-                    tab.Columns.Add("Name");
-                    tab.Columns.Add("Surname");
-                    tab.Columns.Add("Age");
-                    tab.Columns.Add("ID");
-                    tab.Columns.Add("Mark");
-                    tab.Columns.Add("Country");
-                    tab.Columns.Add("Region");
-                    tab.Columns.Add("City");
-                    tab.Columns.Add("Street");
 
 
-                    foreach (Student a in std1)
-                    {
-                        tab.Rows.Add(a.Name, a.Surname, a.Age, a.ID, a.Mark, a.Adress.Country, a.Adress.Region, a.Adress.City, a.Adress.Street);
-                    }
-                    dataGridView3.DataSource = tab;
-                    
-                }
-
-            }
-        }
+       
 
         private void studentToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -217,23 +145,23 @@ namespace Human1
 
         private void studentToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-
+            search newForm = new search();
+            newForm.Show();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             CreateDT();
-            CreateTree();
+         
             CreateDT(staticlist.teachers);
-            CreateChart();
-            CreaateComboBox();
+          
         }
 
         private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             string a = dataGridView2.Rows[e.RowIndex].Cells[0].Value.ToString() + " " + dataGridView2.Rows[e.RowIndex].Cells[1].Value.ToString();
             MessageBox.Show(a);
-            pictureBox1.BackgroundImage = Image.FromFile("C:/Users/Пк/source/repos/Human1/Human1/1.jpg");
+            pictureBox1.BackgroundImage = Image.FromFile("C:/Users/Admin/source/repos/Human1/Human1/User_icon.png");
             pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
@@ -241,9 +169,33 @@ namespace Human1
         {
             string a = dataGridView2.Rows[e.RowIndex].Cells[0].Value.ToString() + " " + dataGridView2.Rows[e.RowIndex].Cells[1].Value.ToString();
             MessageBox.Show(a);
-            pictureBox1.BackgroundImage = Image.FromFile("C:/Users/Пк/source/repos/Human1/Human1/2.jpg");
+            pictureBox1.BackgroundImage = Image.FromFile("C:/Users/Admin/source/repos/Human1/Human1/2.png");
             pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
         }
+
+        private void groupsOfTeachersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Group newForm = new Group();
+            newForm.Show();
+        }
+
+        private void treeViewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Treeview newForm = new Treeview();
+            newForm.Show();
+        }
+
+        private void chartToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Chart newForm = new Chart();
+            newForm.Show();
+        }
+
+        private void teacherToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            search1 newForm = new search1();
+            newForm.Show();
+        }
     }
-    }
+}
 

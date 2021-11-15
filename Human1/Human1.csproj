@@ -48,6 +48,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Address.cs" />
+    <Compile Include="Chart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Chart.Designer.cs">
+      <DependentUpon>Chart.cs</DependentUpon>
+    </Compile>
     <Compile Include="CreateStudent.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,12 +84,39 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Group.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Group.Designer.cs">
+      <DependentUpon>Group.cs</DependentUpon>
+    </Compile>
     <Compile Include="Human.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="search.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="search.Designer.cs">
+      <DependentUpon>search.cs</DependentUpon>
+    </Compile>
+    <Compile Include="search1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="search1.Designer.cs">
+      <DependentUpon>search1.cs</DependentUpon>
+    </Compile>
     <Compile Include="staticlist.cs" />
     <Compile Include="Student.cs" />
     <Compile Include="Teacher.cs" />
+    <Compile Include="Treeview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Treeview.Designer.cs">
+      <DependentUpon>Treeview.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Chart.resx">
+      <DependentUpon>Chart.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CreateStudent.resx">
       <DependentUpon>CreateStudent.cs</DependentUpon>
     </EmbeddedResource>
@@ -99,6 +132,9 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Group.resx">
+      <DependentUpon>Group.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -109,6 +145,15 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="search.resx">
+      <DependentUpon>search.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="search1.resx">
+      <DependentUpon>search1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Treeview.resx">
+      <DependentUpon>Treeview.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

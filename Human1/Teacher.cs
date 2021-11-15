@@ -13,7 +13,10 @@ namespace Human1
         {
             studentlist.Add(Pip);
         }
-
+        public void RemoveStd(int pip)
+        {
+            studentlist.RemoveAt(pip);
+        }
         public Teacher(string Name, string Surname, int Age, int ID, Address adress) :
             base(Name, Surname, Age, ID, adress)
         {

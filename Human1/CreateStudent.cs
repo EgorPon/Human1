@@ -41,6 +41,7 @@ namespace Human1
             string region = textBoxRegion.Text;
             string city = textBoxCity.Text;
             string street = textBoxStreet.Text;
+            
             Address address = new Address(country, region, city, street);
             Student std = new Student(name, surname, age, id, mark, address);
             for (int i = 0; i < staticlist.teachers.Count; i++)

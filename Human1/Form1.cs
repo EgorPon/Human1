@@ -151,29 +151,12 @@ namespace Human1
             CreateChart();
             CreateDT();
             CreaateComboBox();
-
-        }
-
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            CreateTeach newForm = new CreateTeach();
-            newForm.Show();
-        }
-
-        private void toolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-            CreateStudent newForm = new CreateStudent();
-            newForm.Show();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            CreateDT();
             CreateTree();
-            CreateDT(staticlist.teachers);
-            CreateChart();
-            CreaateComboBox();
         }
+
+      
+
+        
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -202,9 +185,65 @@ namespace Human1
                         tab.Rows.Add(a.Name, a.Surname, a.Age, a.ID, a.Mark, a.Adress.Country, a.Adress.Region, a.Adress.City, a.Adress.Street);
                     }
                     dataGridView3.DataSource = tab;
+                    
                 }
 
             }
         }
+
+        private void studentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CreateStudent newForm = new CreateStudent();
+            newForm.Show();
+        }
+
+        private void teacherToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CreateTeach newForm = new CreateTeach();
+            newForm.Show();
+        }
+
+        private void studentToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            DeleteStudent newForm = new DeleteStudent();
+            newForm.Show();
+        }
+
+        private void teacherToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            DeleteTeach newForm = new DeleteTeach();
+            newForm.Show();
+        }
+
+        private void studentToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            CreateDT();
+            CreateTree();
+            CreateDT(staticlist.teachers);
+            CreateChart();
+            CreaateComboBox();
+        }
+
+        private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            string a = dataGridView2.Rows[e.RowIndex].Cells[0].Value.ToString() + " " + dataGridView2.Rows[e.RowIndex].Cells[1].Value.ToString();
+            MessageBox.Show(a);
+            pictureBox1.BackgroundImage = Image.FromFile("C:/Users/Пк/source/repos/Human1/Human1/1.jpg");
+            pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
+        }
+
+        private void dataGridView2_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            string a = dataGridView2.Rows[e.RowIndex].Cells[0].Value.ToString() + " " + dataGridView2.Rows[e.RowIndex].Cells[1].Value.ToString();
+            MessageBox.Show(a);
+            pictureBox1.BackgroundImage = Image.FromFile("C:/Users/Пк/source/repos/Human1/Human1/2.jpg");
+            pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
+        }
     }
-}
+    }
+

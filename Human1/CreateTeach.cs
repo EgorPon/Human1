@@ -28,6 +28,7 @@ namespace Human1
             string region = textBoxRegion.Text;
             string city = textBoxCity.Text;
             string street = textBoxStreet.Text;
+           
             Address address = new Address(country, region, city, street);
             Teacher tcher = new Teacher(name, surname, age, id, address);
             
